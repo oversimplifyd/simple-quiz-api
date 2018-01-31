@@ -1,0 +1,84 @@
+Problem Approach / Architecture
+- Review all system requirements / user story
+- Pick a right tech stack (LAMP)
+- Use an in-memory DB for caching to reload DB load / access
+- Use token based authentication to auth mobile user via the server
+- Use standard HTTP status codes and detailed error messages
+- Enable Rate Limiting to prevent known security attacks.
+- Provision deployment using containers or deploy directly on bare metal.
+
+Process Flow (Overview)
+    - App POST Sign up data to server
+    - Server (VALIDATES) {
+        if (ERROR) {
+            return ALL validation error messages
+        }
+        return SUCCESS
+    }
+    - APP POST Sign in details to Server
+    - SERVER (AUTHENTICATES) {
+        if (ERROR) {
+            return ALL error messages
+        }
+        return TOKEN for subsequent requests.
+      }
+    - App GETS questions
+    - App POST answer e.t.c.
+    - App GET quiz report per user
+
+=====================================================================================
+SCHEMA
+-------
+CREATE DATABASE quiz;
+
+USE quiz;
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  first_name VARCHAR(100) NOT NULL,
+  last_name VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(60),
+  profile_pic VARCHAR(200),
+  created_at DATETIME,
+  updated_at DATETIME,
+  deleted_at DATETIME,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS questions (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  question TEXT NOT NULL,
+  type TINYINT(2),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS options (
+  question_id INT(11) NOT NULL,
+  option_1 TEXT NOT NULL,
+  option_2 TEXT NOT NULL,
+  option_3 TEXT NOT NULL,
+  option_4 TEXT NOT NULL,
+  answer TINYINT(2) NOT NULL,
+  deleted_at DATETIME,
+  PRIMARY KEY (question_id)
+);
+
+CREATE TABLE users_quizzes (
+  user_id INT(11) NOT NULL,
+  question_id INT(11) NOT NULL,
+  answer TINYINT(2) NOT NULL,
+  total_time INT(11)
+);
+
+=====================================================================================
+ENDPOINTS
+---------
+POST /register
+POST /login
+
+GET /questions?count={count}&type={type}
+POST /answer
+
+GET /users/{id}/report
+

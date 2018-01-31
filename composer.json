@@ -1,0 +1,66 @@
+{
+    "name": "laravel/laravel",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=5.6.4",
+        "barryvdh/laravel-cors": "^0.10.0",
+        "barryvdh/laravel-dompdf": "^0.8.1",
+        "barryvdh/laravel-ide-helper": "^2.3",
+        "doctrine/dbal": "~2.3",
+        "guzzlehttp/guzzle": "^6.3",
+        "infyomlabs/adminlte-templates": "5.4.x-dev",
+        "infyomlabs/laravel-generator": "5.4.x-dev",
+        "infyomlabs/swagger-generator": "dev-master",
+        "jlapp/swaggervel": "dev-master",
+        "laravel/framework": "5.4.*",
+        "laravel/tinker": "~1.0",
+        "laravelcollective/html": "^5.4.0",
+        "marc-mabe/php-enum": "^3.0",
+        "predis/predis": "^1.1",
+        "tymon/jwt-auth": "^0.5.12",
+        "yabacon/paystack-php": "^2.1"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~5.7",
+        "squizlabs/php_codesniffer": "^3.2"
+    },
+    "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "psr-4": {
+            "QUIZ\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "php artisan key:generate"
+        ],
+        "post-install-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postInstall",
+            "php artisan optimize"
+        ],
+        "post-update-cmd": [
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan optimize"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}

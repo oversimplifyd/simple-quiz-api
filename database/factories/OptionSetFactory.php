@@ -12,10 +12,14 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(QUIZ\Models\Question::class, function (Faker\Generator $faker) {
+$factory->define(QUIZ\Models\OptionSet::class, function (Faker\Generator $faker) {
 
     return [
-        'question' => $faker->realText(),
-        'type' => $faker->randomNumber(1)
+        'question_id' => $faker->randomDigit,
+        'option_1' => $faker->realText(),
+        'option_2' => $faker->realText(),
+        'option_3' => $faker->realText(),
+        'option_4' => $faker->realText(),
+        'answer' => $faker->randomNumber(1)
     ];
 });

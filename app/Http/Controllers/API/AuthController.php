@@ -34,7 +34,7 @@ class AuthController extends APIBaseController
             $input['profile_pic'] = Image::processImage($input['profile_pic'], 'profile_pics');
         }
 
-        $this->userRepo->create($request->all());
+        $this->userRepo->create($input);
         return $this->success('Registration Successful');
     }
 

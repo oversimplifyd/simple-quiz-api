@@ -26,9 +26,12 @@ class QuizController extends APIBaseController
 
     public function getQuestions(QuestionRequest $request)
     {
+        $type = isset($request['type']) ? $request['type'] : 1;
+        $count = isset($request['count']) ? $request['count'] : 5;
+
         return $this->success($this->questionRepo
-            ->with(['optionSet'])
-            ->findWhere($request->all())
+                ->with(['optionSet'])
+                ->findWhere(['type' => $type])
         );
     }
 

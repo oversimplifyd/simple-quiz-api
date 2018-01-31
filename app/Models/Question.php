@@ -3,7 +3,6 @@
 namespace QUIZ\Models;
 
 use Illuminate\Database\Eloquent\Model as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Question
@@ -12,7 +11,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Question extends Model
 {
-    use SoftDeletes;
 
     protected $dates = ['deleted_at'];
 
@@ -33,6 +31,6 @@ class Question extends Model
 
     public function optionSet()
     {
-        $this->hasOne('Quiz\Models\OptionSet');
+       return  $this->hasOne('QUIZ\Models\OptionSet');
     }
 }

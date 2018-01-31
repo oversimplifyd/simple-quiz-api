@@ -15,6 +15,7 @@ class CreateOptionsSetTable extends Migration
     {
         Schema::create('options_set', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('question_id');
             $table->text('option_1');
             $table->text('option_2');
             $table->text('option_3');

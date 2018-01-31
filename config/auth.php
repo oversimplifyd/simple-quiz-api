@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => QUIZ\User::class,
+            'model' => QUIZ\Models\User::class,
         ],
 
         // 'users' => [

@@ -2,7 +2,7 @@
 
 namespace QUIZ\Models;
 
-use Eloquent as Model;
+use Illuminate\Database\Eloquent\Model as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class OptionSet extends Model
 {
-    use SoftDeletes;
 
     protected $table = 'options_set';
 
@@ -26,4 +25,9 @@ class OptionSet extends Model
         'option_4',
         'answer'
     ];
+
+    public function question()
+    {
+        return $this->belongsTo('QUIZ\Models\Question');
+    }
 }

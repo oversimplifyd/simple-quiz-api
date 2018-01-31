@@ -2,7 +2,7 @@
 
 namespace QUIZ\Models;
 
-use Illuminate\Database\Eloquent\Model as Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package QUIZ\Models
  * @version December 6, 2017, 2:09 pm UTC
  */
-class User extends Model
+class User extends Authenticatable
 {
     use SoftDeletes;
 
@@ -21,6 +21,7 @@ class User extends Model
         'last_name',
         'password',
         'email',
+        'profile_pic'
     ];
 
     /**
@@ -40,7 +41,7 @@ class User extends Model
         $this->attributes['password'] = bcrypt($password);
     }
 
-    public function getProfilePicAttributes($value)
+    public function getProfilePicAttribute($value)
     {
         return config('app.url').'/images/profile_pic/'.$value;
     }

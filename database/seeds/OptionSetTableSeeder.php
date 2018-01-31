@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class QuestionsTableSeeder extends Seeder
+class OptionSetTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class QuestionsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(QUIZ\Models\Question::class, 50)->create();
+        factory(QUIZ\Models\OptionSet::class, 50)->create();
     }
 }

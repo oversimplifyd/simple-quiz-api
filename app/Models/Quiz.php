@@ -2,7 +2,7 @@
 
 namespace QUIZ\Models;
 
-use Eloquent as Model;
+use Illuminate\Database\Eloquent\Model as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -10,20 +10,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package QUIZ\Models
  * @version December 6, 2017, 2:09 pm UTC
  */
-class OptionSet extends Model
+class Quiz extends Model
 {
     use SoftDeletes;
-
-    protected $table = 'options_set';
 
     protected $dates = ['deleted_at'];
 
     public $fillable = [
         'question_id',
-        'option_1',
-        'option_2',
-        'option_3',
-        'option_4',
+        'user_id',
+        'total_time',
         'answer'
     ];
 }

@@ -52,6 +52,6 @@ class User extends Model
 
     public function quizzes()
     {
-        return $this->hasMany('QUIZ\Models\Questions', 'user_id', 'id');
+        return $this->hasMany('QUIZ\Models\Quizzes', 'user_id', 'id');
     }
 }
